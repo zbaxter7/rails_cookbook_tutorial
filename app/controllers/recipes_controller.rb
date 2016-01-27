@@ -5,26 +5,31 @@ class RecipesController < ApplicationController
   # GET /recipes.json
   def index
     @recipes = Recipe.all
+    @title = "Recipes"
   end
 
   # GET /recipes/1
   # GET /recipes/1.json
   def show
+    @title = "Show"
   end
 
   # GET /recipes/new
   def new
     @recipe = Recipe.new
+    @title = "New"
   end
 
   # GET /recipes/1/edit
   def edit
+    @title = "Edit"
   end
 
   # POST /recipes
   # POST /recipes.json
   def create
     @recipe = Recipe.new(recipe_params)
+    @title = "Create"
 
     respond_to do |format|
       if @recipe.save
