@@ -2,6 +2,7 @@ require 'test_helper'
 
 class RecipesControllerTest < ActionController::TestCase
   setup do
+    login 'admin', 'password'
     @recipe = recipes(:one)
   end
 
@@ -46,4 +47,11 @@ class RecipesControllerTest < ActionController::TestCase
 
     assert_redirected_to recipes_path
   end
+
+  private 
+    def login(user, pass)
+      credentials = ActionController::HttpAuthentication::Basic.encode_credentials user, pass
+      request.env['HTTP_AUTHORIZATION'] = credentials
+    end
+
 end
